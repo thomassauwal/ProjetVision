@@ -6,33 +6,6 @@
 using namespace std;
 using namespace cv;
  
-  /*VideoCapture cap("test.mp4");
-  
-  Mat vid;
-  
-  while(true){
-  
-  	cap.read(vid);
-  	
-  	imshow("Image", vid);
-  	waitKey(1);*/ 
-  
-  
-  /*Mat image;
-  image = imread("index.jpeg" ,IMREAD_GRAYSCALE); // IMREAD_COLOR
-  
-  
-  
-  if(! image.data ) {
-      cout <<  "Image not found or unable to open" << endl ;
-      return -1;
-    }
-  
-  namedWindow( "Techawarey:OpenCV Test Program", WINDOW_AUTOSIZE );
-  imshow( "Techawarey:OpenCV Test Program", image );
-  
-  waitKey(0); // pas fermer tant qu 'on appui pas sur la croix de l'image
-  return 0;*/
   
   int main(int argc, char* argv[])
   
@@ -40,32 +13,32 @@ using namespace cv;
 
 
     Mat image;
-    image = imread("bad1.jpg" ); // IMREAD_COLOR
+    image = imread("bad1.jpg" ); // IMREAD_COLOR  test de l'image
     Mat dst;
     Mat thr;
-    Mat result;
+    Mat result;      // création des différentes images dont on va avoir besoin
     Mat new_;
     Mat edges;
     Mat res;
-    imshow("image",image);
+    imshow("image",image);   // affichage de la premiere image
     
-    cvtColor(image, new_ , COLOR_BGR2HSV,0);
-    imshow("new",new_);
+    cvtColor(image, new_ , COLOR_BGR2HSV,0);// conversion de l'espace colorimétrique en HSV
+    imshow("new",new_);                   
   
-  cvtColor(image,dst, COLOR_BGR2GRAY,0);
+  cvtColor(image,dst, COLOR_BGR2GRAY,0); // image en niveau de gris
   imshow("gray", dst);
   
-  inRange(new_, Scalar(0,0,200), Scalar(120,120,255),thr);
+  inRange(new_, Scalar(0,0,200), Scalar(120,120,255),thr);  // filtrer la couleur blanche dans l'image HSV et stocker l'image résultat dans thr
   
   
-  imshow("testtt", thr);
+  imshow("testtt", thr);   // affichage de l'image avec la couleur que l'on cherchait ( image bianire avec couleur que l'on recherche en blanc)
   
-  Canny(thr,edges, 75, 175);
+  Canny(thr,edges, 75, 175);  // a partir d'ici c est trouvé sur le net , détection de contour avec transformation de Hough, j ia juste testé, pas regarder comment sa fonctionne encore
   imshow("edges", edges);
   
   cvtColor(edges,res, COLOR_GRAY2RGB);
   vector<Vec2f> lines;
-  HoughLines(edges,lines,1, CV_PI/180, 150,0,0,0,CV_PI);
+  HoughLines(edges,lines,1, CV_PI/180, 150,0,0,0,CV_PI);   // transformée de Hough pour détection de ligne dans l'image
   
   for(size_t i=0; i<lines.size();i++)
   {
@@ -82,52 +55,11 @@ using namespace cv;
   
   imshow(" res", res);
   
-  
-  /*if(! image.data ) {
-      cout <<  "Image not found or unable to open" << endl ;
-      return -1;
-    }
-  
-  namedWindow( "Bad", WINDOW_AUTOSIZE );
-  imshow( "Bad", image );
-  
-  waitKey(0); // pas fermer tant qu 'on appui pas sur la croix de l'image
-  
-  Mat image_X;
- 
-  Sobel(image, image_X, CV_8UC1, 1, 0);
-  imshow("Sobel Image", image_X);
-  waitKey(0);
-  
-  Mat image_Y;
-  
-  Sobel(image, image_Y, CV_8UC1, 0, 1);
-  imshow("Sobel Image", image_Y);
-  waitKey(0);
-  
-  Mat Sobel = image_X + image_Y;
-  
-  imshow("Sobel", Sobel);*/
-  waitKey(0);
-  
-  
-  
-  
-  
+  waitKey(0);  // programme tourne tant que les images ne sont pas fermées
+
   return 0;
     
-    
-    
-    /*VideoCapture cap("test.mp4");
-  
-  Mat vid;
-  
-  while(true){
-  
-  	cap.read(vid);
-  	
-  	imshow("Image", vid);
-  	waitKey(1);*/
+ 
 }
 
 
