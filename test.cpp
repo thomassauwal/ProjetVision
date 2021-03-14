@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
     return 1;
   }
   Mat image;
-  image = imread(argv[1]); // IMREAD_COLOR  test de l'image
+  image = imread(argv[1]);
 
   Mat gray;
   cvtColor(image, gray, COLOR_BGR2GRAY);
