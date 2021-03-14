@@ -14,7 +14,36 @@ int main(int argc, char* argv[])
   }
   Mat image;
   image = imread(argv[1]); // IMREAD_COLOR  test de l'image
-  Mat dst;
+  
+  Mat gray;
+  cvtColor(image, gray, COLOR_BGR2GRAY);
+    
+  Mat edges;
+  Canny(gray,edges,100,200,3);
+    
+  Mat res;
+  cvtColor(edges, res, COLOR_GRAY2BGR);
+    
+  Mat resP;
+  resP = res.clone();
+    
+    
+  vector<Vec4i> linesP;
+  HoughLinesP(edges,linesP,1,CV_PI/180, 50,50,10);
+    
+      for( size_t i = 0; i < linesP.size(); i++ )
+  {
+      Vec4i l = linesP[i];
+      line( resP, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0,0,255), 3, LINE_AA);
+   }
+    
+    
+    imshow("Detected Lines (in red) - Probabilistic Line Transform", resP);
+  
+  
+  
+  
+  /*Mat dst;
   Mat thr;
   Mat result;      // création des différentes images dont on va avoir besoin
   Mat new_;
@@ -53,7 +82,7 @@ int main(int argc, char* argv[])
     line( res, pt1, pt2, Scalar(0,0,255), 3, LINE_AA);
   }
 
-  imshow(" res", res);
+  imshow(" res", res);*/
   waitKey(0);  // programme tourne tant que les images ne sont pas fermées
 
   return 0;
