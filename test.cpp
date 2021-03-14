@@ -9,11 +9,11 @@ using namespace cv;
 int main(int argc, char* argv[])
 {
   if (argc < 2) {
-    cerr << "Not enough arguments. Please use \"./output picture_name\"";
+    cerr << "Not enough arguments. Please use \"./output picture_name\"" << endl;
     return 1;
   }
   Mat image;
-  image = imread("bad1.jpg" ); // IMREAD_COLOR  test de l'image
+  image = imread(argv[1]); // IMREAD_COLOR  test de l'image
   Mat dst;
   Mat thr;
   Mat result;      // création des différentes images dont on va avoir besoin
