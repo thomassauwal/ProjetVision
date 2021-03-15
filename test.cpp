@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
 
   Mat res;
   cvtColor(edges, res, COLOR_GRAY2BGR);
+  imshow("res", res);
 
   Mat resP;
   resP = res.clone();
