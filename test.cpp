@@ -22,9 +22,11 @@ int main(int argc, char* argv[])
 
   Mat edges;
   Canny(gray, edges, 200, 250, 3);
+  imshow("edges", edges);
 
   Mat res;
   cvtColor(edges, res, COLOR_GRAY2BGR);
+  imshow("res", res);
 
   Mat resP;
   resP = res.clone();
