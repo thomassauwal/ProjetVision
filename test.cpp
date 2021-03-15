@@ -14,15 +14,14 @@ int main(int argc, char* argv[])
   }
   Mat image;
   image = imread(argv[1]);
-  imshow("bad.jpg",image);
+  imshow("bad.jpg", image);
 
   Mat gray;
   cvtColor(image, gray, COLOR_BGR2GRAY);
-  imshow("Image en niveau de gris",gray);
-  
+  imshow("Image en niveau de gris", gray);
 
   Mat edges;
-  Canny(gray,edges,100,200,3);
+  Canny(gray, edges, 100, 200, 3);
 
   Mat res;
   cvtColor(edges, res, COLOR_GRAY2BGR);
@@ -33,7 +32,7 @@ int main(int argc, char* argv[])
 
 
   vector<Vec4i> linesP;
-  HoughLinesP(edges,linesP,1,CV_PI/180, 50,50,10);
+  HoughLinesP(edges, linesP, 1, CV_PI/180, 50, 50, 10);
 
   for( size_t i = 0; i < linesP.size(); i++ )
   {
