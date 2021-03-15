@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
   imshow("Image en niveau de gris", gray);
 
   Mat edges;
-  Canny(gray, edges, 100, 200, 3);
+  Canny(gray, edges, 200, 250, 3);
 
   Mat res;
   cvtColor(edges, res, COLOR_GRAY2BGR);
@@ -40,6 +40,8 @@ int main(int argc, char* argv[])
   }
 
   imshow("Detected Lines (in red) - Probabilistic Line Transform", resP);
+  if (argc == 3)
+    imwrite(argv[2], resP);
 
 
   /*Mat dst;
